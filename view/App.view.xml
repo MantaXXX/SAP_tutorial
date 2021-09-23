@@ -1,16 +1,24 @@
 <!-- view.xml as same as template in Vue's component to display page  -->
-<mvc:View
-  controllerName="sap.ui.demo.walkthrough.controller.App"
+<mvc:View controllerName="sap.ui.demo.walkthrough.controller.App"
   xmlns="sap.m"
-  xmlns:mvc="sap.ui.core.mvc">
-  <!-- XML view button text data binding to showHelloButtonText -->
-  <Button
-    text="{i18n>showHelloButtonText}"
-    press=".onShowHello"/>
-  <!-- declare the path in {...} to bind the mode's value  -->
-  <Input
-    value="{/recipient/name}"
-    description="Hello {/recipient/name}"
-    valueLiveUpdate="true"
-    width="60%"/>
+  xmlns:mvc="sap.ui.core.mvc" displayBlock="true">
+  <!-- <Shell> control as container takes care of visual adaptation of the application to the device’s screen size  -->
+  <Shell>
+    <App>
+      <pages>
+        <Page title="{i18n>homePageTitle}">
+          <content>
+            <Panel headerText="{i18n>helloPanelTitle}">
+              <content>
+                <!-- XML view button text data binding to showHelloButtonText -->
+                <Button text="{i18n>showHelloButtonText}" press=".onShowHello"/>
+                <!-- declare the path in {...} to bind the mode's value  -->
+                <Input value="{/recipient/name}" description="Hello {/recipient/name}" valueLiveUpdate="true" width="60%"/>
+              </content>
+            </Panel>
+          </content>
+        </Page>
+      </pages>
+    </App>
+  </Shell>
 </mvc:View>
