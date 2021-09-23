@@ -1,0 +1,9 @@
+<!-- view.xml as same as template in Vue's component to display page  -->
+<mvc:View
+  controllerName="sap.ui.demo.walkthrough.controller.App"
+  xmlns="sap.m"
+  xmlns:mvc="sap.ui.core.mvc">
+  <Button
+      text="Say Hello"
+      press=".onShowHello"/>
+</mvc:View>
