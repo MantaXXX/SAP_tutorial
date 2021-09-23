@@ -10,11 +10,8 @@
           <content>
             <Panel headerText="{i18n>helloPanelTitle}">
               <content>
-                <!-- XML view button text data binding to showHelloButtonText -->
-                <Button text="{i18n>showHelloButtonText}" press=".onShowHello" class="myCustomButton"/>
-                <!-- declare the path in {...} to bind the mode's value  -->
-                <Input value="{/recipient/name}" description="Hello {/recipient/name}" valueLiveUpdate="true" width="60%"/>
-                <FormattedText htmlText="Hello {/recipient/name}" class="sapUiSmallMargin sapThemeHighlight-asColor myCustomText"/>
+                <!-- XMLView tag refer to a new view -->
+                <mvc:XMLView viewName="sap.ui.demo.walkthrough.view.HelloPanel"/>
               </content>
             </Panel>
           </content>
