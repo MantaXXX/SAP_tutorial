@@ -1,0 +1,17 @@
+<mvc:View
+	xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc"
+>
+	<!-- aggregation binding to root path "Invoices" of JSON data -->
+	<!-- Since JSON model defined as "invoice" in manifest, each binding definition have to be prefixed with the idientifier "invoice>" -->
+	<List
+		headerText="{i18n>invoiceListTitle}"
+		class="sapUiResponsiveMargin"
+		width="auto"
+		items="{invoice>/Invoices}"
+	>
+		<items>
+			<ObjectListItem title="{invoice>Quantity} x {invoice>ProductName}"/>
+		</items>
+	</List>
+</mvc:View>
