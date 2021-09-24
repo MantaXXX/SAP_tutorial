@@ -1,6 +1,17 @@
-<!-- A new XML defines a fragment  -->
-<core:FragmentDefinition xmlns="sap.m"
-  xmlns:core="sap.ui.core">
-  <Dialog id="helloDialog" title="Hello {/recipient/name}">
-  </Dialog>
+<!-- A new XML defines a fragment without controller  -->
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+>
+	<Dialog
+		id="helloDialog"
+		title="Hello {/recipient/name}"
+	>
+		<beginButton>
+			<Button
+				text="{i18n>dialogCloseButtonText}"
+				press=".onCloseDialog"
+			/>
+		</beginButton>
+	</Dialog>
 </core:FragmentDefinition>
