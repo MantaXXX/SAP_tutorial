@@ -3,9 +3,9 @@ sap.ui.define(
   [
     "sap/ui/core/UIComponent",
     "sap/ui/model/json/JSONModel",
-    "sap/ui/model/resource/ResourceModel",
+    "./controller/HelloDialog",
   ],
-  function (UIComponent, JSONModel, ResourceModel) {
+  function (UIComponent, JSONModel, HelloDialog) {
     "use strict";
     return UIComponent.extend("sap.ui.demo.walkthrough.Component", {
       // Component.js consists of two parts： 1. metadata 2. init function
@@ -29,6 +29,24 @@ sap.ui.define(
         var oModel = new JSONModel(oData);
         // setModel() function makes this model be used within XML view
         this.setModel(oModel);
+
+        // set dialog
+        this.rootControlLoaded().then(
+          function () {
+            this._helloDialog = new HelloDialog(this.getRootControl());
+          }.bind(this)
+        );
+      },
+
+      exit: function () {
+        if (this._helloDialog) {
+          this._helloDialog.destroy();
+          delete this._helloDialog;
+        }
+      },
+
+      openHelloDialog: function () {
+        this._helloDialog.open();
       },
     });
   }
