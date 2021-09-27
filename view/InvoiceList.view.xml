@@ -6,12 +6,19 @@
 	<!-- aggregation binding to root path "Invoices" of JSON data -->
 	<!-- Since JSON model defined as "invoice" in manifest, each binding definition have to be prefixed with the idientifier "invoice>" -->
 	<!-- spceify id for the List to identify the list from event handler "onFilterInvoices"  -->
+	<!-- add sorter property to sort items and group them-->
 	<List
 		id="invoiceList"
 		headerText="{i18n>invoiceListTitle}"
 		class="sapUiResponsiveMargin"
 		width="auto"
-		items="{invoice>/Invoices}"
+		items="{
+      path : 'invoice>/Invoices',
+      sorter : {
+        path : 'ShipperName',
+				group : true     
+      }
+    }"
 	>
 		<!-- Toolbar is more flexible and adjustable   -->
 		<headerToolbar>
