@@ -23,7 +23,8 @@
 		}"
 				numberUnit="{view>/currency}"
 			/>
-      <!-- add number & numberUnit attributs and apply the currency data type by setting the type attribute -->
+			<!-- add number & numberUnit attributs and apply the currency data type by setting the type attribute -->
+      <!-- format number state with a expression binding syntax: starts with "=" inside the brackets and do simple calculation logic -->
 			<ObjectListItem
 				title="{invoice>Quantity} x {invoice>ProductName}"
 				number="{
@@ -34,6 +35,7 @@
 			}
 		}"
 				numberUnit="{view>/currency}"
+				numberState="{= ${invoice>ExtendedPrice} > 50 ? 'Error' : 'Success' }"
 			/>
 		</items>
 	</List>
