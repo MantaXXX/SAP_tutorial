@@ -4,19 +4,7 @@
   xmlns:mvc="sap.ui.core.mvc" displayBlock="true">
   <!-- <Shell> control as container takes care of visual adaptation of the application to the device’s screen size  -->
   <Shell>
-    <App class="myAppDemoWT">
-      <pages>
-        <Page title="{i18n>homePageTitle}">
-          <headerContent>
-            <Button icon="sap-icon://hello-world" press=".onOpenDialog"/>
-          </headerContent>
-          <content>
-            <!-- XMLView tag refer to a new view -->
-            <mvc:XMLView viewName="sap.ui.demo.walkthrough.view.HelloPanel"/>
-            <mvc:XMLView viewName="sap.ui.demo.walkthrough.view.InvoiceList"/>
-          </content>
-        </Page>
-      </pages>
-    </App>
+  <!-- router identifys the property controlID: 'app' and will automatically add the view with the current URL into app control  " -->
+    <App class="myAppDemoWT" id="app"/>
   </Shell>
 </mvc:View>

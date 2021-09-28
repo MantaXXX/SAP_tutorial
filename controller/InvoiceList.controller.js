@@ -40,6 +40,12 @@ sap.ui.define(
         var oBinding = oList.getBinding("items");
         oBinding.filter(aFilter);
       },
+      onPress: function (oEvent) {
+        // access the router instance by calling the getOwnerComponent().getRouter()
+        var oRouter = this.getOwnerComponent().getRouter();
+        // call navTo() method to navigate to the specific route
+        oRouter.navTo("detail");
+      },
     });
   }
 );
