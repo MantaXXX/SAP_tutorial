@@ -41,10 +41,19 @@ sap.ui.define(
         oBinding.filter(aFilter);
       },
       onPress: function (oEvent) {
+        // getSource() -> Returns the event provider on which the event was fired.
+        var oItem = oEvent.getSource();
+
         // access the router instance by calling the getOwnerComponent().getRouter()
         var oRouter = this.getOwnerComponent().getRouter();
-        // call navTo() method to navigate to the specific route
-        oRouter.navTo("detail");
+        // navTo() method navigate to the specific route
+        // add a configuration object to pass the navigation parameter "invoicePath" with the current item's path
+        // substr(1) remove the first "/" from the binding path, cause it's a special character not allowed
+        oRouter.navTo("detail", {
+          invoicePath: window.encodeURIComponent(
+            oItem.getBindingContext("invoice").getPath().substr(1)
+          ),
+        });
       },
     });
   }
