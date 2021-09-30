@@ -1,20 +1,51 @@
 <mvc:View
+	controllerName="sap.ui.demo.walkthrough.controller.Detail"
 	xmlns="sap.m"
 	xmlns:mvc="sap.ui.core.mvc"
-	controllerName="sap.ui.demo.walkthrough.controller.Detail"
 	xmlns:wt="sap.ui.demo.walkthrough.control"
 >
-	<!-- add routing back -->
 	<Page
 		title="{i18n>detailPageTitle}"
 		showNavButton="true"
 		navButtonPress=".onNavBack"
 	>
+		<!-- add routing back -->
 		<!-- bind some properties of the <objectHearer> to the "invoice" model -->
+		<!-- objectHeader control set the responsive attribute to true  -->
 		<ObjectHeader
+			responsive="true"
+			fullScreenOptimized="true"
+			number="{
+				parts: [{path: 'invoice>ExtendedPrice'}, {path: 'view>/currency'}],
+				type: 'sap.ui.model.type.Currency',
+				formatOptions: {
+					showMeasure: false
+				}
+			}"
+			numberUnit="{view>/currency}"
 			intro="{invoice>ShipperName}"
 			title="{invoice>ProductName}"
-		/>
+		>
+			<attributes>
+				<ObjectAttribute
+					title="{i18n>quantityTitle}"
+					text="{invoice>Quantity}"
+				/>
+				<ObjectAttribute
+					title="{i18n>dateTitle}"
+					text="{
+						path: 'invoice>ShippedDate',
+						type: 'sap.ui.model.type.Date',
+						formatOptions: {
+							style: 'long',
+							source: {
+								pattern: 'yyyy-MM-ddTHH:mm:ss'
+							}
+						}
+					}"
+				/>
+			</attributes>
+		</ObjectHeader>
 		<wt:ProductRating
 			id="rating"
 			class="sapUiSmallMarginBeginEnd"

@@ -4,8 +4,9 @@ sap.ui.define(
     "sap/ui/core/UIComponent",
     "sap/ui/model/json/JSONModel",
     "./controller/HelloDialog",
+    "sap/ui/Device",
   ],
-  function (UIComponent, JSONModel, HelloDialog) {
+  function (UIComponent, JSONModel, HelloDialog, Device) {
     "use strict";
     return UIComponent.extend("sap.ui.demo.walkthrough.Component", {
       // Component.js consists of two parts： 1. metadata 2. init function
@@ -36,6 +37,13 @@ sap.ui.define(
             this._helloDialog = new HelloDialog(this.getRootControl());
           }.bind(this)
         );
+
+        // set device model initially
+        var oDeviceModel = new JSONModel(Device);
+        // binding mode has to be "Oneway", cause device model is read-only, avoid changing the model accidentally
+        oDeviceModel.setDefaultBindingMode("OneWay");
+        // set on the component as a named model for further reference in data binding in view.
+        this.setModel(oDeviceModel, "device");
 
         // create the views based on the url/hash
         this.getRouter().initialize();
