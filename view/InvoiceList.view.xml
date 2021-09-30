@@ -7,7 +7,7 @@
 	<!-- Since JSON model defined as "invoice" in manifest, each binding definition have to be prefixed with the idientifier "invoice>" -->
 	<!-- spceify id for the List to identify the list from event handler "onFilterInvoices"  -->
 	<!-- add sorter property to sort items and group them-->
-	<List
+	<Table
 		id="invoiceList"
 		headerText="{i18n>invoiceListTitle}"
 		class="sapUiResponsiveMargin"
@@ -31,41 +31,64 @@
 				/>
 			</Toolbar>
 		</headerToolbar>
-		<items>
-			<ObjectListItem
-				title="{invoice>Quantity} x {invoice>ProductName}"
-				number="{
-			parts: [{path: 'invoice>ExtendedPrice'}, {path: 'view>/currency'}],
-			type: 'sap.ui.model.type.Currency',
-			formatOptions: {
-				showMeasure: false
-			}
-		}"
-				numberUnit="{view>/currency}"
-			/>
-			<!-- add number & numberUnit attributs and apply the currency data type by setting the type attribute -->
-			<!-- format number state with a expression binding syntax: starts with "=" inside the brackets and do simple calculation logic -->
-			<ObjectListItem
-				title="{invoice>Quantity} x {invoice>ProductName}"
-				number="{
-					parts: [{path: 'invoice>ExtendedPrice'}, {path: 'view>/currency'}],
-					type: 'sap.ui.model.type.Currency',
-					formatOptions: {
-					showMeasure: false
-					}
-				}"
-				numberUnit="{view>/currency}"
-				numberState="{= ${invoice>ExtendedPrice} > 50 ? 'Error' : 'Success' }"
-				type="Navigation"
-				press="onPress"
+		<!-- replace <List> with <Table>, table has a built-in responsiveness feature, both share same properties  -->
+		<columns>
+			<Column
+				hAlign="End"
+				minScreenWidth="Small"
+				demandPopin="true"
+				width="5em"
 			>
-				<firstStatus>
-					<ObjectStatus text="{
+				<Text text="{i18n>columnQuantity}"/>
+			</Column>
+			<Column>
+				<Text text="{i18n>columnName}"/>
+			</Column>
+			<Column
+				minScreenWidth="Small"
+				demandPopin="true"
+			>
+				<Text text="{i18n>columnStatus}"/>
+			</Column>
+			<Column
+				minScreenWidth="Tablet"
+				demandPopin="false"
+			>
+				<Text text="{i18n>columnSupplier}"/>
+			</Column>
+			<Column hAlign="End">
+				<Text text="{i18n>columnPrice}"/>
+			</Column>
+		</columns>
+		<items>
+			<ColumnListItem
+				type="Navigation"
+				press=".onPress"
+			>
+				<cells>
+					<ObjectNumber
+						number="{invoice>Quantity}"
+						emphasized="false"
+					/>
+					<ObjectIdentifier title="{invoice>ProductName}"/>
+					<Text text="{
 						path: 'invoice>Status',
 						formatter: '.formatter.statusText'
 					}"/>
-				</firstStatus>
-			</ObjectListItem>
+					<Text text="{invoice>ShipperName}"/>
+					<ObjectNumber
+						number="{
+							parts: [{path: 'invoice>ExtendedPrice'}, {path: 'view>/currency'}],
+							type: 'sap.ui.model.type.Currency',
+							formatOptions: {
+								showMeasure: false
+							}
+						}"
+						unit="{view>/currency}"
+						state="{= ${invoice>ExtendedPrice} > 50 ? 'Error' : 'Success' }"
+					/>
+				</cells>
+			</ColumnListItem>
 		</items>
-	</List>
+	</Table>
 </mvc:View>

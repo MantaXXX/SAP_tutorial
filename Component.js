@@ -40,6 +40,17 @@ sap.ui.define(
         // create the views based on the url/hash
         this.getRouter().initialize();
       },
+
+      exit: function () {
+        if (this._helloDialog) {
+          this._helloDialog.destroy();
+          delete this._helloDialog;
+        }
+      },
+
+      openHelloDialog: function () {
+        this._helloDialog.open();
+      },
     });
   }
 );
